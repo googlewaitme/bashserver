@@ -1,5 +1,5 @@
 import pytest
-from models import User
+from models.models import User
 from peewee import *
 
 class Test_ModelUser:

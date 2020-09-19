@@ -1,5 +1,5 @@
 import pytest
-from models import ReadedTheory, Theory, User
+from models.models import ReadedTheory, Theory, User
 from peewee import *
 
 
@@ -13,4 +13,9 @@ class Test_ModelReadedTheory:
 		self.theory.delete_instance()
 		self.user.delete_instance()
 		self.readed_theory.delete_instance()
-	# TODO me
+	
+	def test_user_in_readed_is_user(self):
+		assert self.user is self.readed_theory.user
+	
+	def test_theory_in_readed_is_theory(self):
+		assert self.theory is self.readed_theory.theory

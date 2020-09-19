@@ -1,5 +1,5 @@
 import pytest
-from models import Theory
+from models.models import Theory
 from peewee import *
 
 class Test_ModelTheory:
