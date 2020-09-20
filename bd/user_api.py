@@ -1,4 +1,4 @@
-from models.models import User
+from models.models import User, PassingQuestion, ReadedTheory
 
 
 class UserApi:
@@ -30,9 +30,7 @@ class UserApi:
 		User.create(user_id=self._user_id)
 
 	def add_readed_theory(self, theory):
-		pass
-		# TODO ME
+		ReadedTheory.create(user=self.give_user(), theory=theory)
 
 	def add_passed_question(self, question):
-		pass
-		# TODO ME
+		PassingQuestion.create(user=self.give_user(), question=question)
