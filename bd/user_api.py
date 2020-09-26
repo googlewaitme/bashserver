@@ -1,11 +1,14 @@
-from models.models import User, PassingQuestion, ReadedTheory
+from bd.models.models import User, PassingQuestion, ReadedTheory
 
 
 class UserApi:
 
-	def __init__(self, user_id):
+	def __init__(self, user_id='vk_00'):
 		self._user_id = user_id
 	
+	def set_user_id(self, user_id):
+		self._user_id = user_id
+
 	def is_exist(self):
 		users_query = User.select().where(User.user_id==self._user_id)
 		users_list = list(users_query)
@@ -17,17 +20,21 @@ class UserApi:
 		user = User.get(User.user_id==self._user_id)
 		return user
 
+	def give_user_model(self):	
+		user_model = User.get(User.user_id==self._user_id)
+		return user_model	
+
 	def give_id(self):
 		return self._user_id
 
 	def remove(self):
-		assert self.is_exist()
-		user = self.give_user()
-		user.delete_instance()
+		if self.is_exist():
+			user = self.give_user()
+			user.delete_instance()
 	
 	def add(self):
-		assert not self.is_exist()
-		User.create(user_id=self._user_id)
+		if not self.is_exist():
+			User.create(user_id=self._user_id)
 
 	def add_readed_theory(self, theory):
 		ReadedTheory.create(user=self.give_user(), theory=theory)
