@@ -24,5 +24,5 @@ def answer_to_dict(model):
 	}
 	return answer
 
-JSON_TRUE = make_json({'boolean': 1})
-JSON_FALSE = make_json({'boolean': 0})
+JSON_TRUE = make_json({'boolean': True})
+JSON_FALSE = make_json({'boolean': False})
