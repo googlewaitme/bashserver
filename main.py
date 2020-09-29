@@ -25,7 +25,6 @@ def remove_user(user_id):
 	json = logik.remove_user(user_id)
 	return json
 
-
 @app.route('/give_theory/<user_id>/')
 def give_theory(user_id):
 	json = logik.give_theory(user_id)

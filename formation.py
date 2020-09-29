@@ -24,5 +24,10 @@ def answer_to_dict(model):
 	}
 	return answer
 
+def answers_to_list(answers):
+	answer = [model.text for model in answers]
+	return answer 
+
+
 JSON_TRUE = make_json({'boolean': True})
 JSON_FALSE = make_json({'boolean': False})

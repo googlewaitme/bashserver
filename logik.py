@@ -41,6 +41,9 @@ class Logik:
 		if self.question.set_new_question():
 			question = self.question.give_question_model()
 			dict_answer = question_to_dict(question)
+			answers_list = self.question.give_all_answer_models_for_question(question)
+			answers_list = answers_to_list(answers_list)
+			dict_answer['answers'] = answers_list
 		else:
 			dict_answer = {
 				'id': -1,
@@ -57,7 +60,7 @@ class Logik:
 			'user_answer_is_right': answer_is_right,
 			'right_answer': right_answer
 		}	
-		json_answer = json(dict_answer)
+		json_answer = make_json(dict_answer)
 		return json_answer	
 
 	def user_is_exist(self, user_id):

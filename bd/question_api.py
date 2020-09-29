@@ -51,6 +51,11 @@ class QuestionApi:
 		else:
 			return False
 
+	def give_all_answer_models_for_question(self, question):
+		query = Answer.select().where(Answer.question==self.question)
+		answers = list(query)
+		return answers
+
 	def give_right_answer_model(self, question_id):
 		self.set_question_by_id(question_id)
 		right_answer = Answer.get(Answer.question==self.question, Answer.is_right==True)

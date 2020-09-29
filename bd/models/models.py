@@ -1,7 +1,7 @@
 from peewee import *
 
 
-database = SqliteDatabase('bash.db')
+database = SqliteDatabase('bash.db', timeout=10)
 
 
 def create_tables():
@@ -37,7 +37,7 @@ class Question(BaseModel):
 
 class Answer(BaseModel):
 	question = ForeignKeyField(Question)
-	text = TextField(null=False, unique=True)
+	text = TextField(null=False)
 	index = AutoField()
 	is_right = BooleanField(default=False)	
 
