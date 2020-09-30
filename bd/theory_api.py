@@ -16,7 +16,8 @@ class TheoryApi:
 		query_readed_theories = ReadedTheory.select().where(ReadedTheory.user==user_model)
 		readed_theories = list()
 		for readed_theory in query_readed_theories:
-			readed_theories.append(readed_theory.theory)
+			theory = Theory.get(Theory.index==readed_theory.theory)
+			readed_theories.append(theory)
 		query_all_theories = Theory.select()
 		all_theories = set(list(query_all_theories))
 		readed_theories = set(readed_theories)

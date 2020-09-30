@@ -27,7 +27,7 @@ class Logik:
 		theories = self.theory.give_theories_that_user_has_not_read(user_model)
 		if len(theories) == 0:
 			dict_answer = {
-				'id': -1,
+				'id': 1,
 				'theme': 'Поздравляю! Вы прошли всю теорию',
 				'text': 'Ты можешь показать данное сообщение учителю'
 			}
@@ -46,7 +46,7 @@ class Logik:
 			dict_answer['answers'] = answers_list
 		else:
 			dict_answer = {
-				'id': -1,
+				'id': 1,
 				'text': 'Вы прошли все тесты из этой темы!'
 			}
 		json_answer = make_json(dict_answer)
