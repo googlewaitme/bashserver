@@ -13,7 +13,7 @@ class TheoryApi:
 		return list_theories_from_model
 
 	def give_theories_that_user_has_not_read(self, user_model):
-		query_readed_theories = ReadedTheory.select().where(ReadedTheory.user==user_model)
+		query_readed_theories = ReadedTheory.select().order_by(ReadedTheory.theory).where(ReadedTheory.user==user_model)
 		readed_theories = list()
 		for readed_theory in query_readed_theories:
 			theory = Theory.get(Theory.index==readed_theory.theory)
