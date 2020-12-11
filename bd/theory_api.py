@@ -5,7 +5,7 @@ class TheoryApi:
 	def give_theory_by_id(theory_id):
 		return Theory.get(Theory.index==theory_id)
 
-	def give_theories_that_user_has_read(user_model):
+	def give_theories_that_user_has_read(self, user_model):
 		query = ReadedTheory.select().where(ReadedTheory.user==user_model)
 		list_theories_from_model = list()
 		for readed_theory in query:
@@ -23,7 +23,7 @@ class TheoryApi:
 		readed_theories = set(readed_theories)
 		return list(all_theories - readed_theories)
 
-	def give_all_theories():
+	def give_all_theories(self):
 		query = Theory.select()
 		list_theories_from_model = list(query)
 		return list_theories_from_model

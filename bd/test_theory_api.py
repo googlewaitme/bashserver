@@ -35,7 +35,7 @@ class Test_TheoryApi:
 
 	def test_give_user_readed_theories(self):
 		list_from_api = self.theory_api.give_theories_that_user_has_read(user_model=self.user.give_user())
-		list_from_test = self.list_theories[:5]
+		list_from_test = self.list_theories[:5]	
 		assert list_from_api == list_from_test
 
 	def test_give_user_not_readed_theories(self):

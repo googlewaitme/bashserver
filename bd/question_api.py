@@ -1,4 +1,5 @@
-from bd.models.models import Question, PassingQuestion, Answer 
+from bd.models.models import Question, PassingQuestion, Answer, ReadedTheory
+
 
 class QuestionApi:
 	def __init__(self, user_api):
@@ -27,6 +28,16 @@ class QuestionApi:
 		list_questions = list(query)
 		return list_questions
 
+	def give_avaible_questions(self):
+		list_questions = self.give_all_questions()
+		query_readed_theories =  ReadedTheory.select().where(ReadedTheory.user==self.user_api.give_user_model())
+		readed_theories = [el.theory for el in query_readed_theories]
+		avaible_questoins = list()
+		for question in list_questions:
+			if question.theory in readed_theories:
+				avaible_questoins.append(question)
+		return avaible_questoins 
+
 	def give_passed_questions(self):
 		query = PassingQuestion.select().where((PassingQuestion.user==self.user_api.give_user()) & (PassingQuestion.is_right==True))
 		passed_questions = list()
@@ -35,9 +46,10 @@ class QuestionApi:
 		return passed_questions 
 
 	def give_not_passed_questions(self):
-		all_questions = set(self.give_all_questions())
+		all_questions = set(self.give_avaible_questions())
 		passed_questions = set(self.give_passed_questions())
 		not_passed_questions = all_questions  - passed_questions
+		print(not_passed_questions)
 		return list(not_passed_questions)
 
 	def all_tests_are_passed(self):

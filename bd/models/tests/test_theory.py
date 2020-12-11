@@ -16,14 +16,6 @@ class Test_ModelTheory:
 	def test_give_text(self):
 		assert self.theory.text == 'That test text'
 
-	def test_theme_is_unique(self):
-		try:
-			Theory.create(text='That test text', theme='That test theme')
-		except IntegrityError:
-			assert True 
-		else:
-			assert False
-
 	def test_values_is_null(self):
 		try:
 			self.theory = Theory.create(theme=None, text='text')

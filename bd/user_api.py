@@ -5,7 +5,7 @@ class UserApi:
 
 	def __init__(self, user_id='vk_00'):
 		self._user_id = user_id
-	
+
 	def set_user_id(self, user_id):
 		self._user_id = user_id
 
@@ -20,9 +20,9 @@ class UserApi:
 		user = User.get(User.user_id==self._user_id)
 		return user
 
-	def give_user_model(self):	
+	def give_user_model(self):
 		user_model = User.get(User.user_id==self._user_id)
-		return user_model	
+		return user_model
 
 	def give_id(self):
 		return self._user_id
@@ -31,7 +31,7 @@ class UserApi:
 		if self.is_exist():
 			user = self.give_user()
 			user.delete_instance()
-	
+
 	def add(self):
 		if not self.is_exist():
 			User.create(user_id=self._user_id)

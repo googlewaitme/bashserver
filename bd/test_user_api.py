@@ -101,4 +101,3 @@ class Test_UserApi:
 		list_of_questions = self.give_list_passed_questions()
 		for question in list_of_questions:
 			question.delete_instance()
-
